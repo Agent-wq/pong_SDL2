@@ -192,7 +192,6 @@ int main()
     ball.w = BALL_SIZE;
     ball.h = BALL_SIZE;
     resetBall(); //resets the ball
-
     //Main loop
     bool running = true;
     SDL_Event event;
@@ -235,7 +234,5 @@ int main()
         render();
         SDL_Delay(16);
     }
-
-    cleanUp(); //cleans up
-    
+    cleanUp(); //cleans up   
 }
