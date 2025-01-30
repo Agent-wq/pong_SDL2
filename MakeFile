@@ -1,0 +1,2 @@
+all:
+	gcc -I src/inc -I fonts -L src/lib -o main main.c -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
