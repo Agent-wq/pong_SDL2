@@ -12,8 +12,7 @@ const int PADDLE_WIDTH = 100;
 const int BALL_SIZE = 15;
 int PADDLE_SPEED = 15;
 int BALL_SPEED = 9;
-const int BALL_SPEEDCAP = 20;
-const int PADDLE_SPEEDCAP = 25;
+const float BALL_SPEEDCAP = 14;
 typedef struct 
 {
     float x,y;
@@ -64,7 +63,7 @@ void updateBall()
     ball.x -= ball.vel_x;
     ball.y -= ball.vel_y;
     //Wall collision
-    if(ball.y < 0 | ball.y + ball.h > SCREEN_HEIGHT);
+    if(ball.y < 0 | ball.y + ball.h > SCREEN_HEIGHT)
         ball.vel_y *= -1;
     //Paddle collision
     SDL_Rect ballRect = {(int)ball.x,(int)ball.y,ball.w,ball.h};
@@ -74,17 +73,7 @@ void updateBall()
     if(SDL_HasIntersection(&ballRect, &leftRect) | SDL_HasIntersection(&ballRect, &rightRect))
     {
         ball.vel_x *= -1;
-        if(BALL_SPEED < BALL_SPEEDCAP)
-        {
-            BALL_SPEED++;
-            PADDLE_SPEED++;
-        }
-        else if (BALL_SPEED >= BALL_SPEEDCAP)
-        {
-            BALL_SPEED = BALL_SPEEDCAP;
-            PADDLE_SPEED = PADDLE_SPEEDCAP;
-        }
-    }
+    }   
     //Score points
     if(ball.x < 0)
     {
@@ -96,6 +85,7 @@ void updateBall()
         leftScore++;
         resetBall();
     }
+    
 }
 SDL_Texture *createTextTexture(const char* text, SDL_Color color)
 {
